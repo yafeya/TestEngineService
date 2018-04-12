@@ -45,5 +45,5 @@ Thumbs.db
 .vs/*
 
 # build result
-/bin
-/obj
+/*/bin
+/*/obj

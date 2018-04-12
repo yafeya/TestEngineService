@@ -10,6 +10,8 @@ namespace TaaS.TestEnginesService
     class AddinLoader
     {
         private const string DllExtension = ".dll";
+        private List<Assembly> LoadedAssemblies { get; set; } = new List<Assembly>();
+
         public IEnumerable<TestEngine> GetEngines(string pluginDirectory)
         {
             var pluginList = new List<TestEngine>();
@@ -30,12 +32,13 @@ namespace TaaS.TestEnginesService
             return pluginList;
         }
 
-        private static TestEngine CreateTestEngine(FileInfo dll)
+        private TestEngine CreateTestEngine(FileInfo dll)
         {
             TestEngine testEngine = null;
             try
             {
-                var assembly = Assembly.LoadFile(dll.FullName);
+                var assembly = Assembly.LoadFrom(dll.FullName);
+                LoadedAssemblies.Add(assembly);
                 var types = assembly.DefinedTypes;
                 var testEnginType = types
                     .Where(x => typeof(TestEngine).IsAssignableFrom(x))
@@ -43,6 +46,19 @@ namespace TaaS.TestEnginesService
                 if (testEnginType != null)
                 {
                     var assemblyName = assembly.GetName();
+                    var dependencies = assembly.GetReferencedAssemblies();
+                    foreach (var dependency in dependencies)
+                    {
+                        var loaded = LoadedAssemblies.Where(x => x.GetName().Name == dependency.Name).FirstOrDefault();
+                        if (loaded != null)
+                        {
+                            AppDomain.CurrentDomain.Load(loaded.GetName());
+                        }
+                        else
+                        {
+                            AppDomain.CurrentDomain.Load(dependency);
+                        }
+                    }
                     AppDomain.CurrentDomain.Load(assemblyName);
                     var constructorInfo = testEnginType.GetConstructor(new Type[] { });
                     testEngine = constructorInfo.Invoke(null) as TestEngine;

@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using TaaS.Common;
 
-namespace MockTestEngine
+namespace MockWorkEngine
 {
-    public class MockTestEngine : TestEngine
+    public class MockWorkEngine : TestEngine
     {
         public override RawResponse GetStatus(RawRequest request)
         {
@@ -28,17 +28,17 @@ namespace MockTestEngine
 
         protected override string GetDescription()
         {
-            return "This is a mock test engine";
+            return "This is a mock worker engine";
         }
 
         protected override string GetName()
         {
-            return "Mock-Test-Engine";
+            return "Mock-Worker-Engine";
         }
 
         protected override int GetServingPort()
         {
-            return 9250;
+            return 8250;
         }
     }
 }

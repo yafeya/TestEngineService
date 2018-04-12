@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockTestEngine", "MockTestE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockLib", "MockLib\MockLib.csproj", "{AA037B9C-01E4-4E36-91E4-B9C1A2734C2A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockWorkEngine", "MockWorkEngine\MockWorkEngine.csproj", "{765D4B96-7175-43EA-B774-3C0C066FCE94}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{AA037B9C-01E4-4E36-91E4-B9C1A2734C2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA037B9C-01E4-4E36-91E4-B9C1A2734C2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA037B9C-01E4-4E36-91E4-B9C1A2734C2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{765D4B96-7175-43EA-B774-3C0C066FCE94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{765D4B96-7175-43EA-B774-3C0C066FCE94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{765D4B96-7175-43EA-B774-3C0C066FCE94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{765D4B96-7175-43EA-B774-3C0C066FCE94}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

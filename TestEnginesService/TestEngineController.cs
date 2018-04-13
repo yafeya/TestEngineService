@@ -24,8 +24,7 @@ namespace TaaS.TestEnginesService
         public RawResponse GetStatus()
         {
             var engine = GetTestEngine();
-            var request = new RawRequest();
-            var response = engine?.GetStatus(request);
+            var response = engine?.GetStatus();
             return response;
         }
 

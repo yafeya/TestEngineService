@@ -8,8 +8,9 @@ namespace TaaS.Common
 {
     public interface ITestEngine
     {
-        void Start(RawRequest request);
-        RawResponse GetStatus(RawRequest request);
+        RawResponse Start(RawRequest request);
+        RawResponse GetStatus();
+        RawResponse Stop(RawRequest request);
     }
 
     public interface ITestEngineDescriptor
@@ -17,6 +18,8 @@ namespace TaaS.Common
         string Name { get; }
         string Description { get; }
         int ServingPort { get; }
+        string Location { get; }
+        RawConfigInfo Configuration { get; }
     }
 
     public abstract class TestEngine : ITestEngine, ITestEngineDescriptor
@@ -36,11 +39,24 @@ namespace TaaS.Common
             get { return GetServingPort(); }
         }
 
-        public abstract void Start(RawRequest request);
-        public abstract RawResponse GetStatus(RawRequest request);
+        public string Location
+        {
+            get { return GetLocation(); }
+        }
+
+        public RawConfigInfo Configuration
+        {
+            get { return GetConfigration(); }
+        }
+
+        public abstract RawResponse Start(RawRequest request);
+        public abstract RawResponse GetStatus();
+        public abstract RawResponse Stop(RawRequest request);
 
         protected abstract string GetName();
         protected abstract string GetDescription();
         protected abstract int GetServingPort();
+        protected abstract string GetLocation();
+        protected abstract RawConfigInfo GetConfigration();
     }
 }

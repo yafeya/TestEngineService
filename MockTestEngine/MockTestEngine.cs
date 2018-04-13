@@ -10,7 +10,7 @@ namespace MockTestEngine
 {
     public class MockTestEngine : TestEngine
     {
-        public override RawResponse GetStatus(RawRequest request)
+        public override RawResponse GetStatus()
         {
             var response = new RawResponse();
             var worker = new Worker();
@@ -19,16 +19,44 @@ namespace MockTestEngine
             return response;
         }
 
-        public override void Start(RawRequest request)
+        public override RawResponse Start(RawRequest request)
         {
             var response = new RawResponse();
+            response.Succeed = true;
             var worker = new Worker();
-            Console.WriteLine($"{Name} Started {worker.Work().ToString()}");
+            var message = $"{Name} Started {worker.Work().ToString()}";
+            Console.WriteLine(message);
+            response.ProgressMessage = message;
+            return response;
+        }
+
+        public override RawResponse Stop(RawRequest request)
+        {
+            var response = new RawResponse();
+            response.Succeed = true;
+            var message = $"{Name} Stopped.";
+            response.ProgressMessage = message;
+            Console.WriteLine(message);
+            return response;
+        }
+
+        protected override RawConfigInfo GetConfigration()
+        {
+            var config = new RawConfigInfo
+            {
+                NeedArgs = false
+            };
+            return config;
         }
 
         protected override string GetDescription()
         {
             return "This is a mock test engine";
+        }
+
+        protected override string GetLocation()
+        {
+            return "Beijing Site A4-18";
         }
 
         protected override string GetName()

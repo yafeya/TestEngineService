@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddinLoader.cs" />
+    <Compile Include="DescriptionController.cs" />
     <Compile Include="KnownConsts.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

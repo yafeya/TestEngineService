@@ -6,8 +6,6 @@ namespace TaaS.TestEnginesService
 {
     public class TestEngineController : ApiController
     {
-        private static Type EngineType = typeof(TestEngine);
-
         [HttpPut]
         public RawResponse StartEngine(RawArg[] args)
         {

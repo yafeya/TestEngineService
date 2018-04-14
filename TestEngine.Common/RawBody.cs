@@ -19,6 +19,13 @@ namespace TaaS.Common
         public string Name { get; set; } = string.Empty;
         public string Type { get; set; } = RawTypes.StringType;
         public string Value { get; set; } = string.Empty;
+
+        public void BindTo(RawArg raw)
+        {
+            Name = raw.Name;
+            Type = raw.Type;
+            Value = raw.Value;
+        }
     }
 
     public class RawResponse : RawArg
@@ -26,6 +33,14 @@ namespace TaaS.Common
         public bool Succeed { get; set; } = false;
         public bool IsCompleted { get; set; } = false;
         public string ProgressMessage { get; set; } = string.Empty;
+
+        public void BindTo(RawResponse raw)
+        {
+            base.BindTo(raw);
+            Succeed = raw.Succeed;
+            IsCompleted = raw.IsCompleted;
+            ProgressMessage = raw.ProgressMessage;
+        }
     }
 
     public class RawRequest

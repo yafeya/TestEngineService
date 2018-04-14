@@ -9,15 +9,39 @@ namespace TaaS.TestEnginesService
         private static Type EngineType = typeof(TestEngine);
 
         [HttpPut]
-        public void StartEngine(RawArg[] args)
+        public RawResponse StartEngine(RawArg[] args)
         {
             var engine = GetTestEngine();
             var request = new RawRequest();
+            var response = new RawResponse();
             if (args != null && args.Length > 0)
             {
                 request.Args = args;
             }
-            engine?.Start(request);
+            if (engine != null)
+            {
+                var result = engine.Start(request);
+                response.BindTo(result);
+            }
+            return response;
+        }
+
+        [HttpPut]
+        public RawResponse StopEngine(RawArg[] args)
+        {
+            var engine = GetTestEngine();
+            var request = new RawRequest();
+            var response = new RawResponse();
+            if (args != null && args.Length > 0)
+            {
+                request.Args = args;
+            }
+            if (engine != null)
+            {
+                var result = engine.Stop(request);
+                response.BindTo(result);
+            }
+            return response;
         }
 
         [HttpGet]

@@ -68,7 +68,6 @@ namespace TaaS.Common
     public class RawConfigInfo
     {
         public bool NeedArgs { get; set; } = true;
-        public bool LengthLimit { get; set; } = true;
         public RawArg[] TemplateArgs { get; set; }
     }
 }

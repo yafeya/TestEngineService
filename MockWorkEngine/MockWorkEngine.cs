@@ -54,7 +54,6 @@ namespace MockWorkEngine
         protected override RawConfigInfo GetConfigration()
         {
             var config = new RawConfigInfo();
-            config.LengthLimit = true;
             config.NeedArgs = true;
             config.TemplateArgs = new[] {
                 new RawArg { Name = "Arg1", Type = RawTypes.StringType },
